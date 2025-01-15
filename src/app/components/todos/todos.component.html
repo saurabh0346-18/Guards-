@@ -1,0 +1,35 @@
+<div class="p-4">
+    <h1 class="text-2xl font-bold mb-4">Todo List</h1>
+    <input
+      type="text"
+      [(ngModel)]="newTask"
+      placeholder="Add a new task"
+      class="border p-2 w-full mb-4"
+    />
+    <button (click)="addTodo()" class="bg-blue-500 text-white p-2 rounded">Add</button>
+  
+    <div class="mt-4">
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        placeholder="Search tasks"
+        class="border p-2 w-full mb-4"
+      />
+      <div>
+        <button (click)="filter = 'all'" [class.bg-blue-500]="filter === 'all'" class="p-2 rounded">All</button>
+        <button (click)="filter = 'completed'" [class.bg-blue-500]="filter === 'completed'" class="p-2 rounded">Completed</button>
+        <button (click)="filter = 'pending'" [class.bg-blue-500]="filter === 'pending'" class="p-2 rounded">Pending</button>
+      </div>
+    </div>
+  
+    <ul class="mt-4">
+      <li *ngFor="let todo of filteredTodos" class="flex justify-between items-center border p-2 mb-2">
+        <span [class.line-through]="todo.completed">{{ todo.task }}</span>
+        <div>
+          <button (click)="toggleComplete(todo.id)" class="bg-green-500 text-white p-1 rounded">Toggle</button>
+          <button (click)="deleteTodo(todo.id)" class="bg-red-500 text-white p-1 rounded">Delete</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
